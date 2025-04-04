@@ -142,31 +142,36 @@ forgotPasswordLink.addEventListener('click', (e) => {
 
 // Enhanced Food Filter and Search Functionality
 document.addEventListener('DOMContentLoaded', () => {
-    const foodGrid = document.getElementById('foodGrid');
     const foodCards = document.querySelectorAll('.food-card');
     const filterBtns = document.querySelectorAll('.filter-btn');
     const searchInput = document.querySelector('.search-input');
     const searchBtn = document.querySelector('.search-btn');
 
-    // Filter functionality
+    // Function to filter food items
     function filterFoodItems(category) {
         foodCards.forEach(card => {
-            if (category === 'all' || card.dataset.category === category) {
-                card.style.display = 'block';
+            const cardCategory = card.dataset.category ? card.dataset.category.toLowerCase() : 'all';
+            
+            if (category === 'all' || cardCategory === category.toLowerCase()) {
+                card.style.display = 'flex'; // 'flex' for a flex container
+                card.style.opacity = '1';
+                card.style.transition = 'opacity 0.3s ease-in-out';
             } else {
-                card.style.display = 'none';
+                card.style.opacity = '0';
+                setTimeout(() => {
+                    card.style.display = 'none';
+                }, 300);
             }
         });
     }
 
+    // Filter button click event
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Update active button
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            
-            // Filter items
-            const category = btn.dataset.filter;
+
+            const category = btn.dataset.filter || 'all';
             filterFoodItems(category);
         });
     });
@@ -174,55 +179,49 @@ document.addEventListener('DOMContentLoaded', () => {
     // Search functionality
     function searchFoodItems(query) {
         query = query.toLowerCase().trim();
-        
-        if (!query) {
-            // If search is empty, respect current category filter
-            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
-            filterFoodItems(activeFilter);
-            return;
-        }
-        
+        const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+
         foodCards.forEach(card => {
             const title = card.querySelector('h3').textContent.toLowerCase();
             const chef = card.querySelector('p').textContent.toLowerCase();
-            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
-            
-            if ((title.includes(query) || chef.includes(query)) && 
-                (activeFilter === 'all' || card.dataset.category === activeFilter)) {
-                card.style.display = 'block';
+            const cardCategory = card.dataset.category.toLowerCase();
+
+            if ((title.includes(query) || chef.includes(query)) &&
+                (activeFilter === 'all' || cardCategory === activeFilter)) {
+                card.style.display = 'flex';
             } else {
                 card.style.display = 'none';
             }
         });
     }
 
+    // Attach search event listeners
     searchBtn.addEventListener('click', () => {
-        const searchTerm = searchInput.value;
-        searchFoodItems(searchTerm);
+        searchFoodItems(searchInput.value);
     });
 
     searchInput.addEventListener('keyup', (e) => {
         if (e.key === 'Enter') {
-            const searchTerm = searchInput.value;
-            searchFoodItems(searchTerm);
+            searchFoodItems(searchInput.value);
         }
     });
 
-    // Food card click functionality
+    // Food card click functionality (Show details)
     foodCards.forEach(card => {
         card.addEventListener('click', () => {
             const foodName = card.querySelector('h3').textContent;
             const chefName = card.querySelector('p').textContent;
             const price = card.querySelector('.food-price').textContent;
             
-            // Show food details (simulated with alert for now)
             alert(`You selected ${foodName} by ${chefName} for ${price}`);
-            
-            // In a real app, you might open a modal with more details
-            // or navigate to a food details page
+            // Implement modal or navigation here if needed
         });
     });
+
+    // Default to 'all' category on load
+    filterFoodItems('all');
 });
+
 
 document.getElementById('signupButton').addEventListener('click', async () => {
     const email = document.getElementById('signupEmail').value.trim();
@@ -309,3 +308,149 @@ document.getElementById('loginButton').addEventListener('click', async () => {
     }
 });
 
+let cart = [];
+
+document.addEventListener('DOMContentLoaded', function () {
+    const cartButton = document.querySelector('.cart-button');
+    const cartModal = document.getElementById('cartModal');
+    const closeCart = document.querySelector('.close-cart');
+    const cartItems = document.querySelector('.cart-items');
+    const cartCount = document.querySelector('.cart-count');
+    const totalAmount = document.querySelector('.total-amount');
+    const checkoutBtn = document.querySelector('.checkout-btn');
+
+    // Add to Cart button click handlers
+    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            const foodCard = this.closest('.food-card');
+            const itemName = foodCard.querySelector('h3').textContent;
+            const itemPrice = parseFloat(foodCard.querySelector('.food-price').textContent.replace('$', ''));
+            const chefName = foodCard.querySelector('p').textContent.replace('By ', '');
+
+            addToCart({
+                name: itemName,
+                price: itemPrice,
+                chef: chefName
+            });
+        });
+    });
+
+    // Open cart modal
+    cartButton.addEventListener('click', () => {
+        cartModal.classList.add('active');
+        updateCartDisplay();
+    });
+
+    // Close cart modal
+    closeCart.addEventListener('click', () => {
+        cartModal.classList.remove('active');
+    });
+
+    // Prevent accidental close when clicking inside the cart
+    cartModal.addEventListener('click', (e) => e.stopPropagation());
+    document.addEventListener('click', (e) => {
+        if (!cartModal.contains(e.target) && !cartButton.contains(e.target)) {
+            cartModal.classList.remove('active');
+        }
+    });
+
+    // Checkout button
+    checkoutBtn.addEventListener('click', () => {
+        if (cart.length === 0) {
+            alert('Your cart is empty!');
+            return;
+        }
+        alert('Proceeding to checkout...');
+    });
+});
+
+function addToCart(item) {
+    const existingItem = cart.find(cartItem => cartItem.name === item.name);
+    if (existingItem) {
+        showNotification(`${item.name} is already in the cart!`);
+        return;
+    }
+
+    cart.push(item);
+    showNotification(`${item.name} added to cart!`);
+    updateCartCount();
+    updateCartDisplay();
+}
+
+function removeFromCart(index) {
+    const removedItem = cart.splice(index, 1)[0];
+    showNotification(`${removedItem.name} removed from cart`);
+    updateCartCount();
+    updateCartDisplay();
+}
+
+function updateCartCount() {
+    document.querySelector('.cart-count').textContent = cart.length;
+}
+
+function updateCartDisplay() {
+    const cartItems = document.querySelector('.cart-items');
+    const totalAmount = document.querySelector('.total-amount');
+
+    cartItems.innerHTML = '';
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        total += item.price;
+
+        const itemElement = document.createElement('div');
+        itemElement.className = 'cart-item';
+        itemElement.innerHTML = `
+            <div class="cart-item-info">
+                <div class="cart-item-name">${item.name}</div>
+                <div class="cart-item-chef">By ${item.chef}</div>
+            </div>
+            <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+            <button class="remove-item" onclick="removeFromCart(${index})">×</button>
+        `;
+        cartItems.appendChild(itemElement);
+    });
+
+    totalAmount.textContent = `$${total.toFixed(2)}`;
+}
+
+function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.textContent = message;
+
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+
+// Add styles dynamically
+const style = document.createElement('style');
+style.textContent = `
+    .notification {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #4ecdc4;
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        animation: slideIn 0.3s ease-out;
+        z-index: 1000;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+`;
+document.head.appendChild(style);

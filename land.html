@@ -6,14 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HomeU - Home Cuisine Platform</title>
     <link rel="stylesheet" href="land.css">
+    
 </head>
 
+
+
+
+
 <body>
-   <!-- Landing Page -->
+   <!-- User Page -->
    <div class="user-dashboard" id="userDashboard">
     <div class="header">
+            <div class="logo-container">
+                <img src="/img1.png" alt="HomeU" class="dashboard-logo-image">
+            </div>
+            
+            <div class="user-info">
+                <div class="avatar">U</div>
+                <span id="userDisplayName">User</span>
+                <button class="cart-button">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Cart Modal -->
+        <div class="cart-modal" id="cartModal">
+            <div class="cart-content">
+                <div class="cart-header">
+                    <h3>Your Cart</h3>
+                    <button class="close-cart">×</button>
+                </div>
+                <div class="cart-items">
+                    <!-- Cart items will be dynamically added here -->
+                </div>
+                <div class="cart-footer">
+                    <div class="cart-total">
+                        <span>Total:</span>
+                        <span class="total-amount">$0.00</span>
+                    </div>
+                    <button class="checkout-btn">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+
+
         <div class="logo-container">
-            <img src="https://i.imgur.com/BIUtPnY.png" alt="HomeU" class="dashboard-logo-image">
+            <img src="/img1.png" alt="HomeU" class="logo-image">
         </div>
 
         <div class="user-info">
@@ -46,19 +86,20 @@
                 <p>By Chef Raj</p>
                 <div class="food-details">
                     <span>⭐ 4.9 (87)</span>
-                    <span class="food-price">$14.99</span>
+                    <span class="food-price"> ₹149.9</span>
                 </div>
+                <button class="add-to-cart-btn">Add to Cart</button>
             </div>
 
             <div class="food-card" data-category="non-vegetarian">
-                <img src="https://images.unsplash.com/photo-1549398801-81c29adfb894?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                    alt="Food" class="food-image">
+                <img src="/images/bc.jpg" alt="Food" class="food-image">
                 <h3>Butter Chicken</h3>
                 <p>By Chef Priya</p>
                 <div class="food-details">
                     <span>⭐ 4.8 (102)</span>
-                    <span class="food-price">$13.99</span>
+                    <span class="food-price">₹139.9</span>
                 </div>
+                <button class="add-to-cart-btn">Add to Cart</button>
             </div>
 
             <!-- Vegetarian Items -->
@@ -69,19 +110,19 @@
                 <p>By Chef Maria</p>
                 <div class="food-details">
                     <span>⭐ 4.7 (76)</span>
-                    <span class="food-price">$11.99</span>
+                    <span class="food-price">₹119.9</span>
                 </div>
+                <button class="add-to-cart-btn">Add to Cart</button>
             </div>
 
             <div class="food-card" data-category="vegetarian">
-                <img src="https://images.unsplash.com/photo-1643456325062-04e85b4d8b04?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                    alt="Food" class="food-image">
+                <img src="/images/ptm.jpg" alt="Food" class="food-image">
                 <h3>Paneer Tikka Masala</h3>
                 <p>By Chef Anand</p>
                 <div class="food-details">
                     <span>⭐ 4.8 (91)</span>
-                    <span class="food-price">$12.99</span>
-                </div>
+                    <span class="food-price">₹129.9</span>
+                </div><button class="add-to-cart-btn">Add to Cart</button>
             </div>
 
             <!-- Jain Items -->
@@ -92,25 +133,23 @@
                 <p>By Chef Sanjay</p>
                 <div class="food-details">
                     <span>⭐ 4.6 (64)</span>
-                    <span class="food-price">$15.99</span>
-                </div>
+                    <span class="food-price">₹159.9</span>
+                </div><button class="add-to-cart-btn">Add to Cart</button>
             </div>
 
             <div class="food-card" data-category="jain">
-                <img src="https://images.unsplash.com/photo-1610192243627-fa24b23a350e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                <img src="/images/khichdi.jpg"
                     alt="Food" class="food-image">
                 <h3>Jain Dal Khichdi</h3>
                 <p>By Chef Jaya</p>
                 <div class="food-details">
                     <span>⭐ 4.5 (53)</span>
-                    <span class="food-price">$10.99</span>
-                </div>
+                    <span class="food-price">₹109.9</span>
+                </div><button class="add-to-cart-btn">Add to Cart</button>
             </div>
         </div>
     </div>
 </div>
-
-<!-- Chef Dashboard -->
 
 
 <script src="script.js"></script>

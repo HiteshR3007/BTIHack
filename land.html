@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeU - Home Cuisine Platform</title>
+    <link rel="stylesheet" href="land.css">
+</head>
+
+<body>
+   <!-- Landing Page -->
+   <div class="user-dashboard" id="userDashboard">
+    <div class="header">
+        <div class="logo-container">
+            <img src="https://i.imgur.com/BIUtPnY.png" alt="HomeU" class="dashboard-logo-image">
+        </div>
+
+        <div class="user-info">
+            <div class="avatar">U</div>
+            <span id="userDisplayName">User</span>
+        </div>
+    </div>
+
+    <div class="search-container">
+        <h2>Find Your Perfect Meal</h2>
+
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Search for dishes, cuisines, or chefs...">
+            <button class="search-btn">Search</button>
+        </div>
+
+        <div class="filters">
+            <div class="filter-btn active" data-filter="all">All</div>
+            <div class="filter-btn" data-filter="vegetarian">Vegetarian</div>
+            <div class="filter-btn" data-filter="non-vegetarian">Non-Vegetarian</div>
+            <div class="filter-btn" data-filter="jain">Jain</div>
+        </div>
+
+        <div class="food-grid" id="foodGrid">
+            <!-- Non-Vegetarian Items -->
+            <div class="food-card" data-category="non-vegetarian">
+                <img src="https://images.unsplash.com/photo-1633945274405-b6c8069047b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="Food" class="food-image">
+                <h3>Chicken Biryani</h3>
+                <p>By Chef Raj</p>
+                <div class="food-details">
+                    <span>⭐ 4.9 (87)</span>
+                    <span class="food-price">$14.99</span>
+                </div>
+            </div>
+
+            <div class="food-card" data-category="non-vegetarian">
+                <img src="https://images.unsplash.com/photo-1549398801-81c29adfb894?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="Food" class="food-image">
+                <h3>Butter Chicken</h3>
+                <p>By Chef Priya</p>
+                <div class="food-details">
+                    <span>⭐ 4.8 (102)</span>
+                    <span class="food-price">$13.99</span>
+                </div>
+            </div>
+
+            <!-- Vegetarian Items -->
+            <div class="food-card" data-category="vegetarian">
+                <img src="https://images.unsplash.com/photo-1589647363585-f4a7d3877b10?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="Food" class="food-image">
+                <h3>Vegetable Pasta</h3>
+                <p>By Chef Maria</p>
+                <div class="food-details">
+                    <span>⭐ 4.7 (76)</span>
+                    <span class="food-price">$11.99</span>
+                </div>
+            </div>
+
+            <div class="food-card" data-category="vegetarian">
+                <img src="https://images.unsplash.com/photo-1643456325062-04e85b4d8b04?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="Food" class="food-image">
+                <h3>Paneer Tikka Masala</h3>
+                <p>By Chef Anand</p>
+                <div class="food-details">
+                    <span>⭐ 4.8 (91)</span>
+                    <span class="food-price">$12.99</span>
+                </div>
+            </div>
+
+            <!-- Jain Items -->
+            <div class="food-card" data-category="jain">
+                <img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="Food" class="food-image">
+                <h3>Jain Thali</h3>
+                <p>By Chef Sanjay</p>
+                <div class="food-details">
+                    <span>⭐ 4.6 (64)</span>
+                    <span class="food-price">$15.99</span>
+                </div>
+            </div>
+
+            <div class="food-card" data-category="jain">
+                <img src="https://images.unsplash.com/photo-1610192243627-fa24b23a350e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="Food" class="food-image">
+                <h3>Jain Dal Khichdi</h3>
+                <p>By Chef Jaya</p>
+                <div class="food-details">
+                    <span>⭐ 4.5 (53)</span>
+                    <span class="food-price">$10.99</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Chef Dashboard -->
+
+
+<script src="script.js"></script>
+</body>
+
+</html>

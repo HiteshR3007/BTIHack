@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeU - Home Cuisine Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Landing Page -->
+    <div class="container" id="landingPage">
+        <div class="left-panel">
+            <div class="moving-background"></div>
+            <div class="floating-circle circle1"></div>
+            <div class="floating-circle circle2"></div>
+            <div class="floating-circle circle3"></div>
+            
+            <div class="slideshow">
+                <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');"></div>
+                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1512485694743-9c9538b4e6e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');"></div>
+                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');"></div>
+            </div>
+            
+            <div class="logo-container">
+                <img src="https://i.imgur.com/BIUtPnY.png" alt="HomeU" class="logo-image">
+                <div class="tagline">Connecting homes with culinary experts</div>
+            </div>
+            
+            <div class="content">
+                <h1>Experience Home-Cooked<br>Perfection</h1>
+                <p>Connect with local chefs or become one yourself. HomeU brings gourmet experiences right to your doorstep.</p>
+                
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">✓</div>
+                        <span>Fresh homemade meals from professional chefs</span>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">✓</div>
+                        <span>Curated menus with dietary preferences</span>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">✓</div>
+                        <span>Contactless delivery to your doorstep</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="right-panel">
+            <div class="login-container">
+                <h2>Get Started</h2>
+                
+                <div class="auth-tabs">
+                    <div class="auth-tab active" id="loginTab">Login</div>
+                    <div class="auth-tab" id="signupTab">Sign Up</div>
+                </div>
+                
+                <div class="role-selector">
+                    <div class="role-btn active" id="userBtn">I'm a User</div>
+                    <div class="role-btn" id="chefBtn">I'm a Chef</div>
+                </div>
+                
+                <!-- Login Form -->
+                <form id="loginFormContainer" class="auth-form active">
+                    <input type="hidden" id="loginRoleInput" value="user">
+                    
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                    </div>
+                    
+                    <div class="forgot-password">
+                        <a href="#" id="forgotPasswordLink">Forgot password?</a>
+                    </div>
+                    
+                    <button type="button" id="loginButton">Login</button>
+                    
+                    <div class="form-footer">
+                        <p>New to HomeU? <a href="#" id="switchToSignup">Create an account</a></p>
+                    </div>
+                </form>
+                
+                <!-- Sign Up Form -->
+                <form id="signupFormContainer" class="auth-form">
+                    <input type="hidden" id="signupRoleInput" value="user">
+                    
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signupUsername">Username</label>
+                        <input type="text" id="signupUsername" placeholder="Create a username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" placeholder="Create a password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                    </div>
+                    
+                    <div id="chefAdditionalInfo" style="display: none;">
+                        <div class="form-group">
+                            <label for="chefSpecialty">Cuisine Specialty</label>
+                            <input type="text" id="chefSpecialty" placeholder="E.g., Italian, Indian, etc.">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="chefExperience">Years of Experience</label>
+                            <input type="number" id="chefExperience" min="0" placeholder="Years of cooking experience">
+                        </div>
+                    </div>
+                    
+                    <button type="button" id="signupButton">Sign Up</button>
+                    
+                    <div class="form-footer">
+                        <p>Already have an account? <a href="#" id="switchToLogin">Login</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- User Dashboard -->
+    <div class="user-dashboard" id="userDashboard">
+        <div class="header">
+            <div class="logo-container">
+                <img src="https://i.imgur.com/BIUtPnY.png" alt="HomeU" class="dashboard-logo-image">
+            </div>
+            
+            <div class="user-info">
+                <div class="avatar">U</div>
+                <span id="userDisplayName">User</span>
+            </div>
+        </div>
+        
+        <div class="search-container">
+            <h2>Find Your Perfect Meal</h2>
+            
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Search for dishes, cuisines, or chefs...">
+                <button class="search-btn">Search</button>
+            </div>
+            
+            <div class="filters">
+                <div class="filter-btn active" data-filter="all">All</div>
+                <div class="filter-btn" data-filter="vegetarian">Vegetarian</div>
+                <div class="filter-btn" data-filter="non-vegetarian">Non-Vegetarian</div>
+                <div class="filter-btn" data-filter="jain">Jain</div>
+            </div>
+            
+            <div class="food-grid" id="foodGrid">
+                <!-- Non-Vegetarian Items -->
+                <div class="food-card" data-category="non-vegetarian">
+                    <img src="https://images.unsplash.com/photo-1633945274405-b6c8069047b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Food" class="food-image">
+                    <h3>Chicken Biryani</h3>
+                    <p>By Chef Raj</p>
+                    <div class="food-details">
+                        <span>⭐ 4.9 (87)</span>
+                        <span class="food-price">$14.99</span>
+                    </div>
+                </div>
+                
+                <div class="food-card" data-category="non-vegetarian">
+                    <img src="https://images.unsplash.com/photo-1549398801-81c29adfb894?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Food" class="food-image">
+                    <h3>Butter Chicken</h3>
+                    <p>By Chef Priya</p>
+                    <div class="food-details">
+                        <span>⭐ 4.8 (102)</span>
+                        <span class="food-price">$13.99</span>
+                    </div>
+                </div>
+                
+                <!-- Vegetarian Items -->
+                <div class="food-card" data-category="vegetarian">
+                    <img src="https://images.unsplash.com/photo-1589647363585-f4a7d3877b10?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Food" class="food-image">
+                    <h3>Vegetable Pasta</h3>
+                    <p>By Chef Maria</p>
+                    <div class="food-details">
+                        <span>⭐ 4.7 (76)</span>
+                        <span class="food-price">$11.99</span>
+                    </div>
+                </div>
+                
+                <div class="food-card" data-category="vegetarian">
+                    <img src="https://images.unsplash.com/photo-1643456325062-04e85b4d8b04?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Food" class="food-image">
+                    <h3>Paneer Tikka Masala</h3>
+                    <p>By Chef Anand</p>
+                    <div class="food-details">
+                        <span>⭐ 4.8 (91)</span>
+                        <span class="food-price">$12.99</span>
+                    </div>
+                </div>
+                
+                <!-- Jain Items -->
+                <div class="food-card" data-category="jain">
+                    <img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Food" class="food-image">
+                    <h3>Jain Thali</h3>
+                    <p>By Chef Sanjay</p>
+                    <div class="food-details">
+                        <span>⭐ 4.6 (64)</span>
+                        <span class="food-price">$15.99</span>
+                    </div>
+                </div>
+                
+                <div class="food-card" data-category="jain">
+                    <img src="https://images.unsplash.com/photo-1610192243627-fa24b23a350e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Food" class="food-image">
+                    <h3>Jain Dal Khichdi</h3>
+                    <p>By Chef Jaya</p>
+                    <div class="food-details">
+                        <span>⭐ 4.5 (53)</span>
+                        <span class="food-price">$10.99</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Chef Dashboard -->
+    <div class="chef-dashboard" id="chefDashboard">
+        <div class="header">
+            <div class="logo-container">
+                <img src="https://i.imgur.com/BIUtPnY.png" alt="HomeU" class="dashboard-logo-image">
+            </div>
+            
+            <div class="user-info">
+                <div class="avatar">C</div>
+                <span id="chefDisplayName">Chef</span>
+            </div>
+        </div>
+        
+        <div class="dashboard-container">
+            <h2>Chef Dashboard</h2>
+            <p class="dashboard-subtitle">Welcome back! Here's an overview of your business.</p>
+            
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-title">Total Sales</div>
+                    <div class="stat-value">247</div>
+                    <div class="stat-trend trend-up">↑ 12.5% from last month</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-title">Total Income</div>
+                    <div class="stat-value">$3,482</div>
+                    <div class="stat-trend trend-up">↑ 8.2% from last month</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-title">Total Items</div>
+                    <div class="stat-value">16</div>
+                    <div class="stat-trend">+ 3 new this month</div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h3>Performance Overview</h3>
+                <div class="chart-placeholder">
+                    <p>Chart placeholder</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
